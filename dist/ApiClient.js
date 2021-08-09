@@ -38,21 +38,15 @@ var ApiClient = /*#__PURE__*/function () {
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * @type {String}
-     * @default https://dev-api.webseite-herunterladen.de/v1
+     * @default https://api.webseite-herunterladen.de/v1
      */
-    this.basePath = 'https://dev-api.webseite-herunterladen.de/v1'.replace(/\/+$/, '');
+    this.basePath = 'https://api.webseite-herunterladen.de/v1'.replace(/\/+$/, '');
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
      */
 
-    this.authentications = {
-      'APIKeyHeader': {
-        type: 'apiKey',
-        'in': 'header',
-        name: 'X-API-Key'
-      }
-    };
+    this.authentications = {};
     /**
      * The default HTTP headers to be included for all API calls.
      * @type {Array.<String>}
@@ -562,7 +556,7 @@ var ApiClient = /*#__PURE__*/function () {
       */
     function hostSettings() {
       return [{
-        'url': "https://dev-api.webseite-herunterladen.de/v1",
+        'url': "https://api.webseite-herunterladen.de/v1",
         'description': "No description provided"
       }];
     }

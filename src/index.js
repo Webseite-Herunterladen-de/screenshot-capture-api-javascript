@@ -1,5 +1,5 @@
 /**
- * Webseite-Herunterladen.de Screenshot Capture API
+ * Screenshot Capture API
  * Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
  *
  * The version of the OpenAPI document: 1.0.0
@@ -23,9 +23,9 @@ import ScreenshotApi from './api/ScreenshotApi';
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
 * <pre>
-* var WebseiteHerunterladenDeScreenshotCaptureApi = require('index'); // See note below*.
-* var xxxSvc = new WebseiteHerunterladenDeScreenshotCaptureApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyyModel = new WebseiteHerunterladenDeScreenshotCaptureApi.Yyy(); // Construct a model instance.
+* var ScreenshotCaptureApi = require('index'); // See note below*.
+* var xxxSvc = new ScreenshotCaptureApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyyModel = new ScreenshotCaptureApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -37,8 +37,8 @@ import ScreenshotApi from './api/ScreenshotApi';
 * <p>
 * A non-AMD browser application (discouraged) might do something like this:
 * <pre>
-* var xxxSvc = new WebseiteHerunterladenDeScreenshotCaptureApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyy = new WebseiteHerunterladenDeScreenshotCaptureApi.Yyy(); // Construct a model instance.
+* var xxxSvc = new ScreenshotCaptureApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyy = new ScreenshotCaptureApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
