@@ -1,7 +1,6 @@
 .babelrc
 .gitignore
 .travis.yml
-README.md
 docs/ErrorModel.md
 docs/ScreenshotApi.md
 git_push.sh
