@@ -1,16 +1,12 @@
 .babelrc
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/ErrorModel.md
 docs/ScreenshotApi.md
 git_push.sh
 mocha.opts
-package.json
 src/ApiClient.js
 src/api/ScreenshotApi.js
 src/index.js
 src/model/ErrorModel.js
-test/api/ScreenshotApi.spec.js
-test/model/ErrorModel.spec.js
