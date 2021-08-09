@@ -1,6 +1,6 @@
-# WebseiteHerunterladenDeScreenshotCaptureApi.ScreenshotApi
+# ScreenshotCaptureApi.ScreenshotApi
 
-All URIs are relative to *https://dev-api.webseite-herunterladen.de/v1*
+All URIs are relative to *https://api.webseite-herunterladen.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,15 +20,15 @@ Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful scree
 ### Example
 
 ```javascript
-import WebseiteHerunterladenDeScreenshotCaptureApi from 'webseite_herunterladen_de_screenshot_capture_api';
-let defaultClient = WebseiteHerunterladenDeScreenshotCaptureApi.ApiClient.instance;
+import ScreenshotCaptureApi from 'screenshot_capture_api';
+let defaultClient = ScreenshotCaptureApi.ApiClient.instance;
 // Configure API key authorization: APIKeyHeader
 let APIKeyHeader = defaultClient.authentications['APIKeyHeader'];
 APIKeyHeader.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //APIKeyHeader.apiKeyPrefix = 'Token';
 
-let apiInstance = new WebseiteHerunterladenDeScreenshotCaptureApi.ScreenshotApi();
+let apiInstance = new ScreenshotCaptureApi.ScreenshotApi();
 let token = "token_example"; // String | A valid token is needed to make paid API calls. Tokens can be managed from your account.
 let hash = "hash_example"; // String | The hash value is for authenticated requests. If you want to publish this URL, you should use the authenticated requests.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
@@ -137,15 +137,15 @@ Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful scree
 ### Example
 
 ```javascript
-import WebseiteHerunterladenDeScreenshotCaptureApi from 'webseite_herunterladen_de_screenshot_capture_api';
-let defaultClient = WebseiteHerunterladenDeScreenshotCaptureApi.ApiClient.instance;
+import ScreenshotCaptureApi from 'screenshot_capture_api';
+let defaultClient = ScreenshotCaptureApi.ApiClient.instance;
 // Configure API key authorization: APIKeyHeader
 let APIKeyHeader = defaultClient.authentications['APIKeyHeader'];
 APIKeyHeader.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //APIKeyHeader.apiKeyPrefix = 'Token';
 
-let apiInstance = new WebseiteHerunterladenDeScreenshotCaptureApi.ScreenshotApi();
+let apiInstance = new ScreenshotCaptureApi.ScreenshotApi();
 let token = "token_example"; // String | A valid token is needed to make paid API calls. Tokens can be managed from your account.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
 let opts = {
