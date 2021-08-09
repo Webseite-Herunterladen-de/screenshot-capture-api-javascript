@@ -1,4 +1,4 @@
-# WebseiteHerunterladenDeScreenshotCaptureApi.ErrorModel
+# ScreenshotCaptureApi.ErrorModel
 
 ## Properties
 
