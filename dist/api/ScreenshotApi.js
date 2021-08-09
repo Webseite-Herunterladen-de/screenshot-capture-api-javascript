@@ -143,7 +143,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
       };
       var headerParams = {};
       var formParams = {};
-      var authNames = ['APIKeyHeader'];
+      var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
       var returnType = File;
@@ -249,7 +249,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
       };
       var headerParams = {};
       var formParams = {};
-      var authNames = ['APIKeyHeader'];
+      var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
       var returnType = File;
