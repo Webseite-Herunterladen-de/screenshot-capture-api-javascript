@@ -35,8 +35,8 @@ export default class ScreenshotApi {
 
 
     /**
-     * Callback function to receive the result of the placeScreenshotOrderAuthenticated operation.
-     * @callback module:api/ScreenshotApi~placeScreenshotOrderAuthenticatedCallback
+     * Callback function to receive the result of the captureScreenshotAuthenticated operation.
+     * @callback module:api/ScreenshotApi~captureScreenshotAuthenticatedCallback
      * @param {String} error Error message, if any.
      * @param {File} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -78,23 +78,23 @@ export default class ScreenshotApi {
      * @param {String} opts.proxy Use an address of a proxy server through which the screenshot should be taken. The proxy address should be formatted as http://username:password@proxyserver.com:31280
      * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to false)
      * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to false)
-     * @param {module:api/ScreenshotApi~placeScreenshotOrderAuthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/ScreenshotApi~captureScreenshotAuthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    placeScreenshotOrderAuthenticated(token, hash, url, opts, callback) {
+    captureScreenshotAuthenticated(token, hash, url, opts, callback) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'token' is set
       if (token === undefined || token === null) {
-        throw new Error("Missing the required parameter 'token' when calling placeScreenshotOrderAuthenticated");
+        throw new Error("Missing the required parameter 'token' when calling captureScreenshotAuthenticated");
       }
       // verify the required parameter 'hash' is set
       if (hash === undefined || hash === null) {
-        throw new Error("Missing the required parameter 'hash' when calling placeScreenshotOrderAuthenticated");
+        throw new Error("Missing the required parameter 'hash' when calling captureScreenshotAuthenticated");
       }
       // verify the required parameter 'url' is set
       if (url === undefined || url === null) {
-        throw new Error("Missing the required parameter 'url' when calling placeScreenshotOrderAuthenticated");
+        throw new Error("Missing the required parameter 'url' when calling captureScreenshotAuthenticated");
       }
 
       let pathParams = {
@@ -151,8 +151,8 @@ export default class ScreenshotApi {
     }
 
     /**
-     * Callback function to receive the result of the placeScreenshotOrderUnauthenticated operation.
-     * @callback module:api/ScreenshotApi~placeScreenshotOrderUnauthenticatedCallback
+     * Callback function to receive the result of the captureScreenshotUnauthenticated operation.
+     * @callback module:api/ScreenshotApi~captureScreenshotUnauthenticatedCallback
      * @param {String} error Error message, if any.
      * @param {File} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -193,19 +193,19 @@ export default class ScreenshotApi {
      * @param {String} opts.proxy Use an address of a proxy server through which the screenshot should be taken. The proxy address should be formatted as http://username:password@proxyserver.com:31280
      * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to false)
      * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to false)
-     * @param {module:api/ScreenshotApi~placeScreenshotOrderUnauthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/ScreenshotApi~captureScreenshotUnauthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    placeScreenshotOrderUnauthenticated(token, url, opts, callback) {
+    captureScreenshotUnauthenticated(token, url, opts, callback) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'token' is set
       if (token === undefined || token === null) {
-        throw new Error("Missing the required parameter 'token' when calling placeScreenshotOrderUnauthenticated");
+        throw new Error("Missing the required parameter 'token' when calling captureScreenshotUnauthenticated");
       }
       // verify the required parameter 'url' is set
       if (url === undefined || url === null) {
-        throw new Error("Missing the required parameter 'url' when calling placeScreenshotOrderUnauthenticated");
+        throw new Error("Missing the required parameter 'url' when calling captureScreenshotUnauthenticated");
       }
 
       let pathParams = {

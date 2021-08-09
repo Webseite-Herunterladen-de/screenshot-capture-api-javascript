@@ -4,14 +4,14 @@ All URIs are relative to *https://api.webseite-herunterladen.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**placeScreenshotOrderAuthenticated**](ScreenshotApi.md#placeScreenshotOrderAuthenticated) | **GET** /capture/{token}/{hash} | 
-[**placeScreenshotOrderUnauthenticated**](ScreenshotApi.md#placeScreenshotOrderUnauthenticated) | **GET** /capture/{token} | 
+[**captureScreenshotAuthenticated**](ScreenshotApi.md#captureScreenshotAuthenticated) | **GET** /capture/{token}/{hash} | 
+[**captureScreenshotUnauthenticated**](ScreenshotApi.md#captureScreenshotUnauthenticated) | **GET** /capture/{token} | 
 
 
 
-## placeScreenshotOrderAuthenticated
+## captureScreenshotAuthenticated
 
-> File placeScreenshotOrderAuthenticated(token, hash, url, opts)
+> File captureScreenshotAuthenticated(token, hash, url, opts)
 
 
 
@@ -58,7 +58,7 @@ let opts = {
   'adblock': false, // Boolean | Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads.
   'hideCookieBanners': false // Boolean | Prevent cookie banners and pop-ups from being displayed. The best possible result is tried.
 };
-apiInstance.placeScreenshotOrderAuthenticated(token, hash, url, opts, (error, data, response) => {
+apiInstance.captureScreenshotAuthenticated(token, hash, url, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -120,9 +120,9 @@ No authorization required
 - **Accept**: application/json, application/pdf, image/jpeg, image/png
 
 
-## placeScreenshotOrderUnauthenticated
+## captureScreenshotUnauthenticated
 
-> File placeScreenshotOrderUnauthenticated(token, url, opts)
+> File captureScreenshotUnauthenticated(token, url, opts)
 
 
 
@@ -168,7 +168,7 @@ let opts = {
   'adblock': false, // Boolean | Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads.
   'hideCookieBanners': false // Boolean | Prevent cookie banners and pop-ups from being displayed. The best possible result is tried.
 };
-apiInstance.placeScreenshotOrderUnauthenticated(token, url, opts, (error, data, response) => {
+apiInstance.captureScreenshotUnauthenticated(token, url, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
