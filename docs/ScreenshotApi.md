@@ -7,26 +7,23 @@ Method | HTTP request | Description
 [**captureScreenshotAuthenticated**](ScreenshotApi.md#captureScreenshotAuthenticated) | **GET** /capture/{token}/{hash} | 
 [**captureScreenshotUnauthenticated**](ScreenshotApi.md#captureScreenshotUnauthenticated) | **GET** /capture/{token} | 
 
-
-
-## captureScreenshotAuthenticated
-
-> File captureScreenshotAuthenticated(token, hash, url, opts)
+<a name="captureScreenshotAuthenticated"></a>
+# **captureScreenshotAuthenticated**
+> &#x27;Blob&#x27; captureScreenshotAuthenticated(token, hash, url, opts)
 
 
 
 Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
 
 ### Example
-
 ```javascript
-import ScreenshotCaptureApi from 'screenshot_capture_api';
+import {ScreenshotCaptureApi} from 'screenshot_capture_api';
 
 let apiInstance = new ScreenshotCaptureApi.ScreenshotApi();
 let token = "token_example"; // String | A valid token is needed to make paid API calls. Tokens can be managed from your account.
 let hash = "hash_example"; // String | The hash value is for authenticated requests. If you want to publish this URL, you should use the authenticated requests.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
-let opts = {
+let opts = { 
   'fileType': "fileType_example", // String | The image file format of the captured screenshot. Either png, jpeg or PDF with 72 dpi.
   'ttl': 789, // Number | Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
   'invalidate': true, // Boolean | Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
@@ -49,7 +46,7 @@ let opts = {
   'js': "js_example", // String | Inject your custom Javascript.
   'wait': "wait_example", // String | Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds.
   'element': "element_example", // String | Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.)
-  'timezone': "'Europe/Berlin'", // String | The IANA time zone identifier used for this capture.
+  'timezone': "Europe/Berlin", // String | The IANA time zone identifier used for this capture.
   'device': "device_example", // String | The device used in the emulation.
   'latitude': 0.0, // Number | The latitude used in the emulation of the geo-location.
   'longitude': 0.0, // Number | The longitude used in the emulation of the geo-location.
@@ -68,7 +65,6 @@ apiInstance.captureScreenshotAuthenticated(token, hash, url, opts, (error, data,
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -97,7 +93,7 @@ Name | Type | Description  | Notes
  **js** | **String**| Inject your custom Javascript. | [optional] 
  **wait** | **String**| Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds. | [optional] 
  **element** | **String**| Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.) | [optional] 
- **timezone** | **String**| The IANA time zone identifier used for this capture. | [optional] [default to &#39;Europe/Berlin&#39;]
+ **timezone** | **String**| The IANA time zone identifier used for this capture. | [optional] [default to Europe/Berlin]
  **device** | **String**| The device used in the emulation. | [optional] 
  **latitude** | **Number**| The latitude used in the emulation of the geo-location. | [optional] [default to 0.0]
  **longitude** | **Number**| The longitude used in the emulation of the geo-location. | [optional] [default to 0.0]
@@ -108,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**File**
+**&#x27;Blob&#x27;**
 
 ### Authorization
 
@@ -116,27 +112,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/pdf, image/jpeg, image/png
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/pdf, image/jpeg, image/png
 
-
-## captureScreenshotUnauthenticated
-
-> File captureScreenshotUnauthenticated(token, url, opts)
+<a name="captureScreenshotUnauthenticated"></a>
+# **captureScreenshotUnauthenticated**
+> &#x27;Blob&#x27; captureScreenshotUnauthenticated(token, url, opts)
 
 
 
 Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
 
 ### Example
-
 ```javascript
-import ScreenshotCaptureApi from 'screenshot_capture_api';
+import {ScreenshotCaptureApi} from 'screenshot_capture_api';
 
 let apiInstance = new ScreenshotCaptureApi.ScreenshotApi();
 let token = "token_example"; // String | A valid token is needed to make paid API calls. Tokens can be managed from your account.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
-let opts = {
+let opts = { 
   'fileType': "fileType_example", // String | The image file format of the captured screenshot. Either png, jpeg or PDF with 72 dpi.
   'ttl': 789, // Number | Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
   'invalidate': true, // Boolean | Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
@@ -159,7 +153,7 @@ let opts = {
   'js': "js_example", // String | Inject your custom Javascript.
   'wait': "wait_example", // String | Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds.
   'element': "element_example", // String | Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.)
-  'timezone': "'Europe/Berlin'", // String | The IANA time zone identifier used for this capture.
+  'timezone': "Europe/Berlin", // String | The IANA time zone identifier used for this capture.
   'device': "device_example", // String | The device used in the emulation.
   'latitude': 0.0, // Number | The latitude used in the emulation of the geo-location.
   'longitude': 0.0, // Number | The longitude used in the emulation of the geo-location.
@@ -178,7 +172,6 @@ apiInstance.captureScreenshotUnauthenticated(token, url, opts, (error, data, res
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -206,7 +199,7 @@ Name | Type | Description  | Notes
  **js** | **String**| Inject your custom Javascript. | [optional] 
  **wait** | **String**| Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds. | [optional] 
  **element** | **String**| Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.) | [optional] 
- **timezone** | **String**| The IANA time zone identifier used for this capture. | [optional] [default to &#39;Europe/Berlin&#39;]
+ **timezone** | **String**| The IANA time zone identifier used for this capture. | [optional] [default to Europe/Berlin]
  **device** | **String**| The device used in the emulation. | [optional] 
  **latitude** | **Number**| The latitude used in the emulation of the geo-location. | [optional] [default to 0.0]
  **longitude** | **Number**| The longitude used in the emulation of the geo-location. | [optional] [default to 0.0]
@@ -217,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**File**
+**&#x27;Blob&#x27;**
 
 ### Authorization
 
@@ -225,6 +218,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/pdf, image/jpeg, image/png
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/pdf, image/jpeg, image/png
 
