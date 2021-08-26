@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.ApiClient = void 0;
 
 var _superagent = _interopRequireDefault(require("superagent"));
 
@@ -18,6 +18,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
 * @module ApiClient
@@ -53,9 +55,7 @@ var ApiClient = /*#__PURE__*/function () {
      * @default {}
      */
 
-    this.defaultHeaders = {
-      'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript'
-    };
+    this.defaultHeaders = {};
     /**
      * The default HTTP timeout for all API calls.
      * @type {Number}
@@ -92,11 +92,6 @@ var ApiClient = /*#__PURE__*/function () {
 
 
     this.requestAgent = null;
-    /*
-     * Allow user to add superagent plugins
-     */
-
-    this.plugins = null;
   }
   /**
   * Returns a string representation for an actual parameter.
@@ -116,43 +111,27 @@ var ApiClient = /*#__PURE__*/function () {
         return param.toJSON();
       }
 
-      if (ApiClient.canBeJsonified(param)) {
-        return JSON.stringify(param);
-      }
-
       return param.toString();
     }
     /**
-    * Returns a boolean indicating if the parameter could be JSON.stringified
-    * @param param The actual parameter
-    * @returns {Boolean} Flag indicating if <code>param</code> can be JSON.stringified
+    * Builds full URL by appending the given path to the base URL and replacing path parameter place-holders with parameter values.
+    * NOTE: query parameters are not handled here.
+    * @param {String} path The path to append to the base URL.
+    * @param {Object} pathParams The parameter values to append.
+    * @returns {String} The encoded path with parameter values substituted.
     */
 
   }, {
     key: "buildUrl",
-    value:
-    /**
-     * Builds full URL by appending the given path to the base URL and replacing path parameter place-holders with parameter values.
-     * NOTE: query parameters are not handled here.
-     * @param {String} path The path to append to the base URL.
-     * @param {Object} pathParams The parameter values to append.
-     * @param {String} apiBasePath Base path defined in the path, operation level to override the default one
-     * @returns {String} The encoded path with parameter values substituted.
-     */
-    function buildUrl(path, pathParams, apiBasePath) {
+    value: function buildUrl(path, pathParams) {
       var _this = this;
 
       if (!path.match(/^\//)) {
         path = '/' + path;
       }
 
-      var url = this.basePath + path; // use API (operation, path) base path if defined
-
-      if (apiBasePath !== null && apiBasePath !== undefined) {
-        url = apiBasePath + path;
-      }
-
-      url = url.replace(/\{([\w-\.]+)\}/g, function (fullMatch, key) {
+      var url = this.basePath + path;
+      url = url.replace(/\{([\w-]+)\}/g, function (fullMatch, key) {
         var value;
 
         if (pathParams.hasOwnProperty(key)) {
@@ -269,39 +248,42 @@ var ApiClient = /*#__PURE__*/function () {
       return newParams;
     }
     /**
+    * Enumeration of collection format separator strategies.
+    * @enum {String}
+    * @readonly
+    */
+
+  }, {
+    key: "buildCollectionParam",
+    value:
+    /**
     * Builds a string representation of an array-type actual parameter, according to the given collection format.
     * @param {Array} param An array parameter.
     * @param {module:ApiClient.CollectionFormatEnum} collectionFormat The array element separator strategy.
     * @returns {String|Array} A string representation of the supplied collection, using the specified delimiter. Returns
     * <code>param</code> as is if <code>collectionFormat</code> is <code>multi</code>.
     */
-
-  }, {
-    key: "buildCollectionParam",
-    value: function buildCollectionParam(param, collectionFormat) {
+    function buildCollectionParam(param, collectionFormat) {
       if (param == null) {
         return null;
       }
 
       switch (collectionFormat) {
         case 'csv':
-          return param.map(this.paramToString, this).join(',');
+          return param.map(this.paramToString).join(',');
 
         case 'ssv':
-          return param.map(this.paramToString, this).join(' ');
+          return param.map(this.paramToString).join(' ');
 
         case 'tsv':
-          return param.map(this.paramToString, this).join('\t');
+          return param.map(this.paramToString).join('\t');
 
         case 'pipes':
-          return param.map(this.paramToString, this).join('|');
+          return param.map(this.paramToString).join('|');
 
         case 'multi':
           //return the array directly as SuperAgent will handle it as expected
-          return param.map(this.paramToString, this);
-
-        case 'passthrough':
-          return param;
+          return param.map(this.paramToString);
 
         default:
           throw new Error('Unknown collection format: ' + collectionFormat);
@@ -325,16 +307,6 @@ var ApiClient = /*#__PURE__*/function () {
           case 'basic':
             if (auth.username || auth.password) {
               request.auth(auth.username || '', auth.password || '');
-            }
-
-            break;
-
-          case 'bearer':
-            if (auth.accessToken) {
-              var localVarBearerToken = typeof auth.accessToken === 'function' ? auth.accessToken() : auth.accessToken;
-              request.set({
-                'Authorization': 'Bearer ' + localVarBearerToken
-              });
             }
 
             break;
@@ -373,14 +345,14 @@ var ApiClient = /*#__PURE__*/function () {
       });
     }
     /**
-     * Deserializes an HTTP response body into a value of the specified type.
-     * @param {Object} response A SuperAgent response object.
-     * @param {(String|Array.<String>|Object.<String, Object>|Function)} returnType The type to return. Pass a string for simple types
-     * or the constructor function for a complex type. Pass an array containing the type name to return an array of that type. To
-     * return an object, pass an object with one property whose name is the key type and whose value is the corresponding value type:
-     * all properties on <code>data<code> will be converted to this type.
-     * @returns A value of the specified type.
-     */
+    * Deserializes an HTTP response body into a value of the specified type.
+    * @param {Object} response A SuperAgent response object.
+    * @param {(String|Array.<String>|Object.<String, Object>|Function)} returnType The type to return. Pass a string for simple types
+    * or the constructor function for a complex type. Pass an array containing the type name to return an array of that type. To
+    * return an object, pass an object with one property whose name is the key type and whose value is the corresponding value type:
+    * all properties on <code>data<code> will be converted to this type.
+    * @returns A value of the specified type.
+    */
 
   }, {
     key: "deserialize",
@@ -401,48 +373,38 @@ var ApiClient = /*#__PURE__*/function () {
       return ApiClient.convertToType(data, returnType);
     }
     /**
-     * Callback function to receive the result of the operation.
-     * @callback module:ApiClient~callApiCallback
-     * @param {String} error Error message, if any.
-     * @param data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
+    * Callback function to receive the result of the operation.
+    * @callback module:ApiClient~callApiCallback
+    * @param {String} error Error message, if any.
+    * @param data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
 
     /**
-     * Invokes the REST service using the supplied settings and parameters.
-     * @param {String} path The base URL to invoke.
-     * @param {String} httpMethod The HTTP method to use.
-     * @param {Object.<String, String>} pathParams A map of path parameters and their values.
-     * @param {Object.<String, Object>} queryParams A map of query parameters and their values.
-     * @param {Object.<String, Object>} headerParams A map of header parameters and their values.
-     * @param {Object.<String, Object>} formParams A map of form parameters and their values.
-     * @param {Object} bodyParam The value to pass as the request body.
-     * @param {Array.<String>} authNames An array of authentication type names.
-     * @param {Array.<String>} contentTypes An array of request MIME types.
-     * @param {Array.<String>} accepts An array of acceptable response MIME types.
-     * @param {(String|Array|ObjectFunction)} returnType The required type to return; can be a string for simple types or the
-     * constructor for a complex type.
-     * @param {String} apiBasePath base path defined in the operation/path level to override the default one
-     * @param {module:ApiClient~callApiCallback} callback The callback function.
-     * @returns {Object} The SuperAgent request object.
-     */
+    * Invokes the REST service using the supplied settings and parameters.
+    * @param {String} path The base URL to invoke.
+    * @param {String} httpMethod The HTTP method to use.
+    * @param {Object.<String, String>} pathParams A map of path parameters and their values.
+    * @param {Object.<String, Object>} queryParams A map of query parameters and their values.
+    * @param {Object.<String, Object>} headerParams A map of header parameters and their values.
+    * @param {Object.<String, Object>} formParams A map of form parameters and their values.
+    * @param {Object} bodyParam The value to pass as the request body.
+    * @param {Array.<String>} authNames An array of authentication type names.
+    * @param {Array.<String>} contentTypes An array of request MIME types.
+    * @param {Array.<String>} accepts An array of acceptable response MIME types.
+    * @param {(String|Array|ObjectFunction)} returnType The required type to return; can be a string for simple types or the
+    * constructor for a complex type.
+    * @param {module:ApiClient~callApiCallback} callback The callback function.
+    * @returns {Object} The SuperAgent request object.
+    */
 
   }, {
     key: "callApi",
-    value: function callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts, returnType, apiBasePath, callback) {
+    value: function callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts, returnType, callback) {
       var _this3 = this;
 
-      var url = this.buildUrl(path, pathParams, apiBasePath);
-      var request = (0, _superagent["default"])(httpMethod, url);
-
-      if (this.plugins !== null) {
-        for (var index in this.plugins) {
-          if (this.plugins.hasOwnProperty(index)) {
-            request.use(this.plugins[index]);
-          }
-        }
-      } // apply authentications
-
+      var url = this.buildUrl(path, pathParams);
+      var request = (0, _superagent["default"])(httpMethod, url); // apply authentications
 
       this.applyAuthToRequest(request, authNames); // set query parameters
 
@@ -467,6 +429,8 @@ var ApiClient = /*#__PURE__*/function () {
         if (contentType != 'multipart/form-data') {
           request.type(contentType);
         }
+      } else if (!request.header['Content-Type']) {
+        request.type('application/json');
       }
 
       if (contentType === 'application/x-www-form-urlencoded') {
@@ -476,26 +440,15 @@ var ApiClient = /*#__PURE__*/function () {
 
         for (var key in _formParams) {
           if (_formParams.hasOwnProperty(key)) {
-            var _formParamsValue = _formParams[key];
-
-            if (this.isFileParam(_formParamsValue)) {
+            if (this.isFileParam(_formParams[key])) {
               // file field
-              request.attach(key, _formParamsValue);
-            } else if (Array.isArray(_formParamsValue) && _formParamsValue.length && this.isFileParam(_formParamsValue[0])) {
-              // multiple files
-              _formParamsValue.forEach(function (file) {
-                return request.attach(key, file);
-              });
+              request.attach(key, _formParams[key]);
             } else {
-              request.field(key, _formParamsValue);
+              request.field(key, _formParams[key]);
             }
           }
         }
-      } else if (bodyParam !== null && bodyParam !== undefined) {
-        if (!request.header['Content-Type']) {
-          request.type('application/json');
-        }
-
+      } else if (bodyParam) {
         request.send(bodyParam);
       }
 
@@ -514,7 +467,7 @@ var ApiClient = /*#__PURE__*/function () {
 
       if (this.enableCookies) {
         if (typeof window === 'undefined') {
-          this.agent._attachCookies(request);
+          this.agent.attachCookies(request);
         } else {
           request.withCredentials();
         }
@@ -529,7 +482,7 @@ var ApiClient = /*#__PURE__*/function () {
               data = _this3.deserialize(response, returnType);
 
               if (_this3.enableCookies && typeof window === 'undefined') {
-                _this3.agent._saveCookies(response);
+                _this3.agent.saveCookies(response);
               }
             } catch (err) {
               error = err;
@@ -542,80 +495,15 @@ var ApiClient = /*#__PURE__*/function () {
       return request;
     }
     /**
-    * Parses an ISO-8601 string representation or epoch representation of a date value.
+    * Parses an ISO-8601 string representation of a date value.
     * @param {String} str The date value as a string.
     * @returns {Date} The parsed date object.
     */
 
-  }, {
-    key: "hostSettings",
-    value:
-    /**
-      * Gets an array of host settings
-      * @returns An array of host settings
-      */
-    function hostSettings() {
-      return [{
-        'url': "https://api.webseite-herunterladen.de/v1",
-        'description': "No description provided"
-      }];
-    }
-  }, {
-    key: "getBasePathFromSettings",
-    value: function getBasePathFromSettings(index) {
-      var variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var servers = this.hostSettings(); // check array index out of bound
-
-      if (index < 0 || index >= servers.length) {
-        throw new Error("Invalid index " + index + " when selecting the host settings. Must be less than " + servers.length);
-      }
-
-      var server = servers[index];
-      var url = server['url']; // go through variable and assign a value
-
-      for (var variable_name in server['variables']) {
-        if (variable_name in variables) {
-          var variable = server['variables'][variable_name];
-
-          if (!('enum_values' in variable) || variable['enum_values'].includes(variables[variable_name])) {
-            url = url.replace("{" + variable_name + "}", variables[variable_name]);
-          } else {
-            throw new Error("The variable `" + variable_name + "` in the host URL has invalid value " + variables[variable_name] + ". Must be " + server['variables'][variable_name]['enum_values'] + ".");
-          }
-        } else {
-          // use default value
-          url = url.replace("{" + variable_name + "}", server['variables'][variable_name]['default_value']);
-        }
-      }
-
-      return url;
-    }
-    /**
-    * Constructs a new map or array model from REST data.
-    * @param data {Object|Array} The REST data.
-    * @param obj {Object|Array} The target object or array.
-    */
-
   }], [{
-    key: "canBeJsonified",
-    value: function canBeJsonified(str) {
-      if (typeof str !== 'string' && _typeof(str) !== 'object') return false;
-
-      try {
-        var type = str.toString();
-        return type === '[object Object]' || type === '[object Array]';
-      } catch (err) {
-        return false;
-      }
-    }
-  }, {
     key: "parseDate",
     value: function parseDate(str) {
-      if (isNaN(str)) {
-        return new Date(str.replace(/(\d)(T)(\d)/i, '$1 $3'));
-      }
-
-      return new Date(+str);
+      return new Date(str);
     }
     /**
     * Converts a value to the specified type.
@@ -655,8 +543,8 @@ var ApiClient = /*#__PURE__*/function () {
           if (type === Object) {
             // generic object, return directly
             return data;
-          } else if (typeof type.constructFromObject === 'function') {
-            // for model type like User and enum class
+          } else if (typeof type === 'function') {
+            // for model type like: User
             return type.constructFromObject(data);
           } else if (Array.isArray(type)) {
             // for array type like: ['String']
@@ -694,6 +582,12 @@ var ApiClient = /*#__PURE__*/function () {
 
       }
     }
+    /**
+    * Constructs a new map or array model from REST data.
+    * @param data {Object|Array} The REST data.
+    * @param obj {Object|Array} The target object or array.
+    */
+
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj, itemType) {
@@ -712,13 +606,14 @@ var ApiClient = /*#__PURE__*/function () {
   return ApiClient;
 }();
 /**
- * Enumeration of collection format separator strategies.
- * @enum {String}
- * @readonly
- */
+* The default API client implementation.
+* @type {module:ApiClient}
+*/
 
 
-ApiClient.CollectionFormatEnum = {
+exports.ApiClient = ApiClient;
+
+_defineProperty(ApiClient, "CollectionFormatEnum", {
   /**
    * Comma-separated values. Value: <code>csv</code>
    * @const
@@ -748,12 +643,6 @@ ApiClient.CollectionFormatEnum = {
    * @const
    */
   MULTI: 'multi'
-};
-/**
-* The default API client implementation.
-* @type {module:ApiClient}
-*/
+});
 
 ApiClient.instance = new ApiClient();
-var _default = ApiClient;
-exports["default"] = _default;

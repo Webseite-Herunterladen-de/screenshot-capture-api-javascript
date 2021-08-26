@@ -3,13 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.ScreenshotApi = void 0;
 
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _ApiClient = require("../ApiClient");
 
-var _ErrorModel = _interopRequireDefault(require("../model/ErrorModel"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _ErrorModel = require("../model/ErrorModel");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,18 +26,19 @@ var ScreenshotApi = /*#__PURE__*/function () {
   * @alias module:api/ScreenshotApi
   * @class
   * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-  * default to {@link module:ApiClient#instance} if unspecified.
+  * default to {@link module:ApiClient#instanc
+  e} if unspecified.
   */
   function ScreenshotApi(apiClient) {
     _classCallCheck(this, ScreenshotApi);
 
-    this.apiClient = apiClient || _ApiClient["default"].instance;
+    this.apiClient = apiClient || _ApiClient.ApiClient.instance;
   }
   /**
    * Callback function to receive the result of the captureScreenshotAuthenticated operation.
-   * @callback module:api/ScreenshotApi~captureScreenshotAuthenticatedCallback
+   * @callback moduleapi/ScreenshotApi~captureScreenshotAuthenticatedCallback
    * @param {String} error Error message, if any.
-   * @param {File} data The data returned by the service call.
+   * @param {'Blob'{ data The data returned by the service call.
    * @param {String} response The complete HTTP response.
    */
 
@@ -53,17 +52,17 @@ var ScreenshotApi = /*#__PURE__*/function () {
    * @param {Number} opts.ttl Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
    * @param {Boolean} opts.invalidate Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
    * @param {Boolean} opts.full Set this parameter to true if you want to screenshot the whole web page in full size.
-   * @param {Boolean} opts.lazyloadScroll Set this parameter to true to scroll down through the entire page before taking a screenshot. This is useful for triggering animations or lazy load elements in full screen. (default to false)
+   * @param {Boolean} opts.lazyloadScroll Set this parameter to true to scroll down through the entire page before taking a screenshot. This is useful for triggering animations or lazy load elements in full screen. (default to <.>)
    * @param {Number} opts.delay The delay in milliseconds to wait after the page loads before taking the screenshot. This is in milliseconds. One second is 1000 milliseconds. From 0 milliseconds to a maximum of 10,000 milliseconds.
-   * @param {Number} opts.width The width, in pixels, of the browser viewport to use. (default to 1920)
-   * @param {Number} opts.height The height, in pixels, of the browser viewport to use. Ignored if you set full to true. (default to 1080)
-   * @param {Number} opts.quality The quality of the image between 0 and 100. This works only for the jpeg format, for PNG images the parameter is applied only during compression. (default to 90)
-   * @param {Number} opts.scale The scale factor of the device to use when taking the screenshot. For example, a scale factor of 2 produces a high-resolution screenshot suitable for viewing on Retina devices. The larger the scale factor, the larger the screenshot produced. (default to 1.0)
-   * @param {Number} opts.x The starting point of a section screenshot on the X axis. (default to 0)
-   * @param {Number} opts.y The starting point of a section screenshot on the Y axis. (default to 0)
-   * @param {Boolean} opts.redirect If you set Redirect, the response will be a 302 redirect to the screenshot file in our CDN. (default to false)
+   * @param {Number} opts.width The width, in pixels, of the browser viewport to use. (default to <.>)
+   * @param {Number} opts.height The height, in pixels, of the browser viewport to use. Ignored if you set full to true. (default to <.>)
+   * @param {Number} opts.quality The quality of the image between 0 and 100. This works only for the jpeg format, for PNG images the parameter is applied only during compression. (default to <.>)
+   * @param {Number} opts.scale The scale factor of the device to use when taking the screenshot. For example, a scale factor of 2 produces a high-resolution screenshot suitable for viewing on Retina devices. The larger the scale factor, the larger the screenshot produced. (default to <.>)
+   * @param {Number} opts.x The starting point of a section screenshot on the X axis. (default to <.>)
+   * @param {Number} opts.y The starting point of a section screenshot on the Y axis. (default to <.>)
+   * @param {Boolean} opts.redirect If you set Redirect, the response will be a 302 redirect to the screenshot file in our CDN. (default to <.>)
    * @param {String} opts.language Sets the Accept-Language header on requests to the target URL so that you can take screenshots from a website with a specific language.
-   * @param {Boolean} opts.randomUserAgent Sets a random user agent header to emulate a different devices when taking screenshots. (default to false)
+   * @param {Boolean} opts.randomUserAgent Sets a random user agent header to emulate a different devices when taking screenshots. (default to <.>)
    * @param {String} opts.userAgent Sets the user agent header to emulate a specific device when taking screenshots.
    * @param {String} opts.headers A semicolon-separated list of header parameters to be used when capturing the screenshot. Each header should be passed as a key-value pair and multiple pairs should be separated by a semicolon.
    * @param {String} opts.cookies A semicolon-separated list of cookies to be used when capturing the screenshot. Each cookies should be passed as a key-value pair and multiple pairs should be separated by a semicolon.
@@ -71,16 +70,16 @@ var ScreenshotApi = /*#__PURE__*/function () {
    * @param {String} opts.js Inject your custom Javascript.
    * @param {String} opts.wait Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds.
    * @param {String} opts.element Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.)
-   * @param {String} opts.timezone The IANA time zone identifier used for this capture. (default to 'Europe/Berlin')
+   * @param {String} opts.timezone The IANA time zone identifier used for this capture. (default to <.>)
    * @param {module:model/String} opts.device The device used in the emulation.
-   * @param {Number} opts.latitude The latitude used in the emulation of the geo-location. (default to 0.0)
-   * @param {Number} opts.longitude The longitude used in the emulation of the geo-location. (default to 0.0)
-   * @param {Number} opts.accuracy The accuracy in meters used in the emulation of the geo-location. (default to 2.0)
+   * @param {Number} opts.latitude The latitude used in the emulation of the geo-location. (default to <.>)
+   * @param {Number} opts.longitude The longitude used in the emulation of the geo-location. (default to <.>)
+   * @param {Number} opts.accuracy The accuracy in meters used in the emulation of the geo-location. (default to <.>)
    * @param {String} opts.proxy Use an address of a proxy server through which the screenshot should be taken. The proxy address should be formatted as http://username:password@proxyserver.com:31280
-   * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to false)
-   * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to false)
+   * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to <.>)
+   * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to <.>)
    * @param {module:api/ScreenshotApi~captureScreenshotAuthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
-   * data is of type: {@link File}
+   * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
    */
 
 
@@ -146,14 +145,14 @@ var ScreenshotApi = /*#__PURE__*/function () {
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
-      var returnType = File;
-      return this.apiClient.callApi('/capture/{token}/{hash}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      var returnType = 'Blob';
+      return this.apiClient.callApi('/capture/{token}/{hash}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, callback);
     }
     /**
      * Callback function to receive the result of the captureScreenshotUnauthenticated operation.
-     * @callback module:api/ScreenshotApi~captureScreenshotUnauthenticatedCallback
+     * @callback moduleapi/ScreenshotApi~captureScreenshotUnauthenticatedCallback
      * @param {String} error Error message, if any.
-     * @param {File} data The data returned by the service call.
+     * @param {'Blob'{ data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -166,17 +165,17 @@ var ScreenshotApi = /*#__PURE__*/function () {
      * @param {Number} opts.ttl Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
      * @param {Boolean} opts.invalidate Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
      * @param {Boolean} opts.full Set this parameter to true if you want to screenshot the whole web page in full size.
-     * @param {Boolean} opts.lazyloadScroll Set this parameter to true to scroll down through the entire page before taking a screenshot. This is useful for triggering animations or lazy load elements in full screen. (default to false)
+     * @param {Boolean} opts.lazyloadScroll Set this parameter to true to scroll down through the entire page before taking a screenshot. This is useful for triggering animations or lazy load elements in full screen. (default to <.>)
      * @param {Number} opts.delay The delay in milliseconds to wait after the page loads before taking the screenshot. This is in milliseconds. One second is 1000 milliseconds. From 0 milliseconds to a maximum of 10,000 milliseconds.
-     * @param {Number} opts.width The width, in pixels, of the browser viewport to use. (default to 1920)
-     * @param {Number} opts.height The height, in pixels, of the browser viewport to use. Ignored if you set full to true. (default to 1080)
-     * @param {Number} opts.quality The quality of the image between 0 and 100. This works only for the jpeg format, for PNG images the parameter is applied only during compression. (default to 90)
-     * @param {Number} opts.scale The scale factor of the device to use when taking the screenshot. For example, a scale factor of 2 produces a high-resolution screenshot suitable for viewing on Retina devices. The larger the scale factor, the larger the screenshot produced. (default to 1.0)
-     * @param {Number} opts.x The starting point of a section screenshot on the X axis. (default to 0)
-     * @param {Number} opts.y The starting point of a section screenshot on the Y axis. (default to 0)
-     * @param {Boolean} opts.redirect If you set Redirect, the response will be a 302 redirect to the screenshot file in our CDN. (default to false)
+     * @param {Number} opts.width The width, in pixels, of the browser viewport to use. (default to <.>)
+     * @param {Number} opts.height The height, in pixels, of the browser viewport to use. Ignored if you set full to true. (default to <.>)
+     * @param {Number} opts.quality The quality of the image between 0 and 100. This works only for the jpeg format, for PNG images the parameter is applied only during compression. (default to <.>)
+     * @param {Number} opts.scale The scale factor of the device to use when taking the screenshot. For example, a scale factor of 2 produces a high-resolution screenshot suitable for viewing on Retina devices. The larger the scale factor, the larger the screenshot produced. (default to <.>)
+     * @param {Number} opts.x The starting point of a section screenshot on the X axis. (default to <.>)
+     * @param {Number} opts.y The starting point of a section screenshot on the Y axis. (default to <.>)
+     * @param {Boolean} opts.redirect If you set Redirect, the response will be a 302 redirect to the screenshot file in our CDN. (default to <.>)
      * @param {String} opts.language Sets the Accept-Language header on requests to the target URL so that you can take screenshots from a website with a specific language.
-     * @param {Boolean} opts.randomUserAgent Sets a random user agent header to emulate a different devices when taking screenshots. (default to false)
+     * @param {Boolean} opts.randomUserAgent Sets a random user agent header to emulate a different devices when taking screenshots. (default to <.>)
      * @param {String} opts.userAgent Sets the user agent header to emulate a specific device when taking screenshots.
      * @param {String} opts.headers A semicolon-separated list of header parameters to be used when capturing the screenshot. Each header should be passed as a key-value pair and multiple pairs should be separated by a semicolon.
      * @param {String} opts.cookies A semicolon-separated list of cookies to be used when capturing the screenshot. Each cookies should be passed as a key-value pair and multiple pairs should be separated by a semicolon.
@@ -184,16 +183,16 @@ var ScreenshotApi = /*#__PURE__*/function () {
      * @param {String} opts.js Inject your custom Javascript.
      * @param {String} opts.wait Wait until the specified CSS selector matches an element present in the page before taking a screenshot. The process is canceled after 60 seconds.
      * @param {String} opts.element Takes a screenshot of the first element matched by the specified CSS selector. This is ignored if full is true. (This option cannot be used with the PDF export format.)
-     * @param {String} opts.timezone The IANA time zone identifier used for this capture. (default to 'Europe/Berlin')
+     * @param {String} opts.timezone The IANA time zone identifier used for this capture. (default to <.>)
      * @param {module:model/String} opts.device The device used in the emulation.
-     * @param {Number} opts.latitude The latitude used in the emulation of the geo-location. (default to 0.0)
-     * @param {Number} opts.longitude The longitude used in the emulation of the geo-location. (default to 0.0)
-     * @param {Number} opts.accuracy The accuracy in meters used in the emulation of the geo-location. (default to 2.0)
+     * @param {Number} opts.latitude The latitude used in the emulation of the geo-location. (default to <.>)
+     * @param {Number} opts.longitude The longitude used in the emulation of the geo-location. (default to <.>)
+     * @param {Number} opts.accuracy The accuracy in meters used in the emulation of the geo-location. (default to <.>)
      * @param {String} opts.proxy Use an address of a proxy server through which the screenshot should be taken. The proxy address should be formatted as http://username:password@proxyserver.com:31280
-     * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to false)
-     * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to false)
+     * @param {Boolean} opts.adblock Prevent ads from being displayed. Block requests from popular ad networks and hide frequent ads. (default to <.>)
+     * @param {Boolean} opts.hideCookieBanners Prevent cookie banners and pop-ups from being displayed. The best possible result is tried. (default to <.>)
      * @param {module:api/ScreenshotApi~captureScreenshotUnauthenticatedCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link File}
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
 
   }, {
@@ -252,12 +251,12 @@ var ScreenshotApi = /*#__PURE__*/function () {
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
-      var returnType = File;
-      return this.apiClient.callApi('/capture/{token}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      var returnType = 'Blob';
+      return this.apiClient.callApi('/capture/{token}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, callback);
     }
   }]);
 
   return ScreenshotApi;
 }();
 
-exports["default"] = ScreenshotApi;
+exports.ScreenshotApi = ScreenshotApi;

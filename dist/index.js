@@ -6,26 +6,24 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "ApiClient", {
   enumerable: true,
   get: function get() {
-    return _ApiClient["default"];
+    return _ApiClient.ApiClient;
   }
 });
 Object.defineProperty(exports, "ErrorModel", {
   enumerable: true,
   get: function get() {
-    return _ErrorModel["default"];
+    return _ErrorModel.ErrorModel;
   }
 });
 Object.defineProperty(exports, "ScreenshotApi", {
   enumerable: true,
   get: function get() {
-    return _ScreenshotApi["default"];
+    return _ScreenshotApi.ScreenshotApi;
   }
 });
 
-var _ApiClient = _interopRequireDefault(require("./ApiClient"));
+var _ApiClient = require("./ApiClient");
 
-var _ErrorModel = _interopRequireDefault(require("./model/ErrorModel"));
+var _ErrorModel = require("./model/ErrorModel");
 
-var _ScreenshotApi = _interopRequireDefault(require("./api/ScreenshotApi"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _ScreenshotApi = require("./api/ScreenshotApi");
