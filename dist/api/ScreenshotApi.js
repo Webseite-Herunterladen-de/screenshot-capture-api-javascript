@@ -48,7 +48,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
    * @param {String} hash The hash value is for authenticated requests. If you want to publish this URL, you should use the authenticated requests.
    * @param {String} url The URL of the website you want to capture. Please include the protocol (http:// or https://).
    * @param {Object} opts Optional parameters
-   * @param {module:model/String} opts.fileType The image file format of the captured screenshot. Either png, jpeg or PDF with 72 dpi.
+   * @param {module:model/String} opts.fileType The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
    * @param {Number} opts.ttl Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
    * @param {Boolean} opts.invalidate Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
    * @param {Boolean} opts.full Set this parameter to true if you want to screenshot the whole web page in full size.
@@ -144,7 +144,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
       var formParams = {};
       var authNames = [];
       var contentTypes = [];
-      var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
+      var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
       var returnType = 'Blob';
       return this.apiClient.callApi('/capture/{token}/{hash}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, callback);
     }
@@ -161,7 +161,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
      * @param {String} token A valid token is needed to make paid API calls. Tokens can be managed from your account.
      * @param {String} url The URL of the website you want to capture. Please include the protocol (http:// or https://).
      * @param {Object} opts Optional parameters
-     * @param {module:model/String} opts.fileType The image file format of the captured screenshot. Either png, jpeg or PDF with 72 dpi.
+     * @param {module:model/String} opts.fileType The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
      * @param {Number} opts.ttl Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
      * @param {Boolean} opts.invalidate Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
      * @param {Boolean} opts.full Set this parameter to true if you want to screenshot the whole web page in full size.
@@ -250,7 +250,7 @@ var ScreenshotApi = /*#__PURE__*/function () {
       var formParams = {};
       var authNames = [];
       var contentTypes = [];
-      var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png'];
+      var accepts = ['application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
       var returnType = 'Blob';
       return this.apiClient.callApi('/capture/{token}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, callback);
     }
