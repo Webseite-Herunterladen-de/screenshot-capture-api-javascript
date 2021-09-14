@@ -24,7 +24,7 @@ let token = "token_example"; // String | A valid token is needed to make paid AP
 let hash = "hash_example"; // String | The hash value is for authenticated requests. If you want to publish this URL, you should use the authenticated requests.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
 let opts = { 
-  'fileType': "fileType_example", // String | The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
+  'fileType': "png", // String | The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
   'ttl': 789, // Number | Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
   'invalidate': true, // Boolean | Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
   'full': true, // Boolean | Set this parameter to true if you want to screenshot the whole web page in full size.
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
  **token** | **String**| A valid token is needed to make paid API calls. Tokens can be managed from your account. | 
  **hash** | **String**| The hash value is for authenticated requests. If you want to publish this URL, you should use the authenticated requests. | 
  **url** | **String**| The URL of the website you want to capture. Please include the protocol (http:// or https://). | 
- **fileType** | **String**| The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi. | [optional] 
+ **fileType** | **String**| The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi. | [optional] [default to png]
  **ttl** | **Number**| Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days. | [optional] 
  **invalidate** | **Boolean**| Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged. | [optional] 
  **full** | **Boolean**| Set this parameter to true if you want to screenshot the whole web page in full size. | [optional] 
@@ -131,7 +131,7 @@ let apiInstance = new ScreenshotCaptureApi.ScreenshotApi();
 let token = "token_example"; // String | A valid token is needed to make paid API calls. Tokens can be managed from your account.
 let url = "url_example"; // String | The URL of the website you want to capture. Please include the protocol (http:// or https://).
 let opts = { 
-  'fileType': "fileType_example", // String | The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
+  'fileType': "png", // String | The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi.
   'ttl': 789, // Number | Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days.
   'invalidate': true, // Boolean | Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged.
   'full': true, // Boolean | Set this parameter to true if you want to screenshot the whole web page in full size.
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**| A valid token is needed to make paid API calls. Tokens can be managed from your account. | 
  **url** | **String**| The URL of the website you want to capture. Please include the protocol (http:// or https://). | 
- **fileType** | **String**| The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi. | [optional] 
+ **fileType** | **String**| The image file format of the captured screenshot. Either png, jpeg, webp or PDF with 72 dpi. | [optional] [default to png]
  **ttl** | **Number**| Number of seconds the capture file is cached by our CDN. An API request that is loaded through the cache does not count as a paid request. You can set a number of seconds from 0 seconds up to 2592000 seconds. This is a maximum of 30 days. | [optional] 
  **invalidate** | **Boolean**| Force the API to invalidate the cache and capture a new screenshot. This call costs you additional money, because a call of a cache hit is not charged. | [optional] 
  **full** | **Boolean**| Set this parameter to true if you want to screenshot the whole web page in full size. | [optional] 
