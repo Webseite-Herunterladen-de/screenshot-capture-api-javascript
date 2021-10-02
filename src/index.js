@@ -1,6 +1,6 @@
 /*
  * Screenshot Capture API
- * Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
+ * screenshot-capture-api.com Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -17,7 +17,7 @@ import {ErrorModel} from './model/ErrorModel';
 import {ScreenshotApi} from './api/ScreenshotApi';
 
 /**
-* Webseite_Herunterladen_de_Screenshot_Capture_is_a_very_simple_but_powerful_screenshot_API_that_anyone_can_easily_use_to_create_pixel_perfect_website_screenshots__It_always_uses_a_recent_version_of_Chrome_to_ensure_that_all_modern_web_features_are_fully_supported_and_rendering_is_exactly_as_your_customers_would_expect_.<br>
+* screenshot_capture_api_com_Screenshot_Capture_is_a_very_simple_but_powerful_screenshot_API_that_anyone_can_easily_use_to_create_pixel_perfect_website_screenshots__It_always_uses_a_recent_version_of_Chrome_to_ensure_that_all_modern_web_features_are_fully_supported_and_rendering_is_exactly_as_your_customers_would_expect_.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:

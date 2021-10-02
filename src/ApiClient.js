@@ -1,6 +1,6 @@
 /*
  * Screenshot Capture API
- * Webseite-Herunterladen.de Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
+ * screenshot-capture-api.com Screenshot Capture is a very simple but powerful screenshot API that anyone can easily use to create pixel-perfect website screenshots. It always uses a recent version of Chrome to ensure that all modern web features are fully supported and rendering is exactly as your customers would expect.
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -32,9 +32,9 @@ export class ApiClient {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
-         * @default https://api.webseite-herunterladen.de/v1
+         * @default https://api.screenshot-capture-api.com/v1
          */
-        this.basePath = 'https://api.webseite-herunterladen.de/v1'.replace(/\/+$/, '');
+        this.basePath = 'https://api.screenshot-capture-api.com/v1'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.
